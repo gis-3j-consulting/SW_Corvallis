@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>SW Corvallis Public Commenting</title>
+  <title>La Pine Public Commenting</title>
   <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.29/"></script>
   <style>
@@ -87,11 +87,10 @@
   </div>
   <div class="topic-buttons">
     <div class="topic-button" id="housing">🟡 Housing</div>
-    <div class="topic-button" id="employment">🔴 Employment</div>
+    <div class="topic-button" id="infrastructure">🟣 Infrastructure</div>
     <div class="topic-button" id="transportation">🔵 Transportation</div>
-    <div class="topic-button" id="parks">🟢 Parks & Trails</div>
-    <div class="topic-button" id="other">🟣 Other</div>
-    
+    <div class="topic-button" id="parks">🟢 Parks & Nature</div>
+    <div class="topic-button" id="employment">🔴 Employment</div>
   </div>
   <script>
     require([
@@ -148,7 +147,7 @@
             }
           },
           {
-            value: "Other",
+            value: "Infrastructure",
             symbol: {
               type: "simple-marker",
               size: 10,
