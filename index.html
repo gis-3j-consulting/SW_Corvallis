@@ -115,15 +115,15 @@
         container: "viewDiv",
         map: map,
         extent: {
-          xmin: -121.55,
-          ymin: 43.62,
-          xmax: -121.45,
-          ymax: 43.72,
+          xmin: -123.35,  //lower right corner?
+          ymin: 44.53,
+          xmax: -123.28, //upper left corner?
+          ymax: 44.57,
           spatialReference: { wkid: 4326 }
         }
       });
 
-      var featureLayerUrl = "https://services8.arcgis.com/tblHe99qQFMcNzpC/arcgis/rest/services/PublicComments/FeatureServer";
+      var featureLayerUrl = "https://services3.arcgis.com/pZZTDhBBLO3B9dnl/arcgis/rest/services/Public_Comment/FeatureServer";
 
       var featureLayer = new FeatureLayer({
         url: featureLayerUrl,
