@@ -190,23 +190,126 @@
       featureLayer.renderer = renderer;
 
       // For City limits, etc...
-      var polygonLayerUrl = "https://intervector.leoncountyfl.gov/intervector/rest/services/MapServices/TLC_Overlay_Citylimits_WM_D/MapServer";
-      var polygonLayer = new FeatureLayer({
-        url: polygonLayerUrl,
+      var polygonLayerUrlCity = "https://services3.arcgis.com/pZZTDhBBLO3B9dnl/arcgis/rest/services/City_Limit/FeatureServer";
+      var polygonLayerCity = new FeatureLayer({
+        url: polygonLayerUrlCity,
         renderer: {
           type: "simple",
           symbol: {
             type: "simple-fill",
             color: [0, 0, 255, 0],
             outline: {
-              color: [255, 0, 0, 1], 
-              width: 1 
+              color: [102, 131, 67, 1], //Corvallis Green
+              width: 1,
+              style: "long-dash-dot"
+            }
+          }
+        }
+      });
+      var polygonLayerUrlUGB = "https://services3.arcgis.com/pZZTDhBBLO3B9dnl/arcgis/rest/services/Urban_Growth_Boundary/FeatureServer";
+      var polygonLayerUGB = new FeatureLayer({
+        url: polygonLayerUrlUGB,
+        renderer: {
+          type: "simple",
+          symbol: {
+            type: "simple-fill",
+            color: [0, 0, 255, 0],
+            outline: {
+              color: [202, 101, 52, 1], //Corallis Orange
+              width: 1, 
+              style: "dash"
+            }
+          }
+        }
+      });
+      var polygonLayerUrlStudyArea = "https://services3.arcgis.com/pZZTDhBBLO3B9dnl/arcgis/rest/services/SW_Corvallis/FeatureServer";
+      var polygonLayerStudyArea = new FeatureLayer({
+        url: polygonLayerUrlStudyArea,
+        renderer: {
+          type: "simple",
+          symbol: {
+            type: "simple-fill",
+            color: [0, 0, 255, 0],
+            outline: {
+              color: [172, 57, 90, 1], //Corvallis Red
+              width: 2 
             }
           }
         }
       });
 
-      map.add(polygonLayer);
+      //add a shadow to study area outline
+     // var yourLayerUrl = "https://services3.arcgis.com/pZZTDhBBLO3B9dnl/arcgis/rest/services/SW_Corvallis/FeatureServer";
+     // var featureLayer = new FeatureLayer({
+     //   url: yourLayerUrl,
+     //   renderer: {
+     //     type: "simple",
+     //     symbol: {
+     //        type: "cim",
+     //       data: {
+     //         type: "CIMSymbolReference",
+     //         symbol: {
+     //           type: "CIMPolygonSymbol",
+     //           symbolLayers: [
+                  // Fill
+     //             {
+     //               type: "CIMSolidFill",
+     //               enable: true,
+     //               color: [0, 0, 255, 0] // Transparent fill
+     //             },
+                  // Outline with shadow effect
+     //              {
+     //               type: "CIMSolidStroke",
+     //               enable: true,
+     //                width: 2,
+     //               color: [172, 57, 90, 255],
+     //               effects: [
+     //                 {
+     //                   type: "CIMGeometricEffectOffset",
+     //                   offset: 1.5 // Shadow offset distance
+     //                 }
+     //               ]
+     //             },
+                  // Shadow layer 3 (outermost, lightest)
+     //             {
+     //               type: "CIMSolidStroke",
+     //               enable: true,
+     //               width: 7,
+     //               color: [0, 0, 0, 30]
+     //            },
+                  // Shadow layer 2
+     //             {
+     //               type: "CIMSolidStroke",
+     //               enable: true,
+     //               width: 5,
+     //               color: [0, 0, 0, 60]
+     //             },
+                  // Shadow layer 1 (darkest)
+     //             {
+     //               type: "CIMSolidStroke",
+     //                enable: true,
+     //               width: 4,
+     //               color: [172, 57, 90, 80]
+     //             },
+                  // Main outline
+     //             {
+     //               type: "CIMSolidStroke",
+     //               enable: true,
+     //               width: 3,
+     //               color: [172, 57, 90, 255]
+     //             }
+     //          ]
+     //         }
+     //       }
+     //     }
+     //  }
+     // }); //end shadow code
+
+      map.add(polygonLayerCity);  //first to be mapped, is bottom layer
+      map.add(polygonLayerUGB);
+      map.add(polygonLayerStudyArea); //top layer
+     // map.add(featureLayer); //Studyarea with shadow
+
 
       // Default for adding points- double click. 
       view.on("double-click", function(event) {
