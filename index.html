@@ -87,10 +87,10 @@
   </div>
   <div class="topic-buttons">
     <div class="topic-button" id="housing">🟡 Housing</div>
-    <div class="topic-button" id="employment">🔴 Employment</div>
-    <div class="topic-button" id="transportation">🔵 Transportation</div>
+    <div class="topic-button" id="employment">🔵 Employment</div>
+    <div class="topic-button" id="transportation">🔴 Transportation</div>
     <div class="topic-button" id="parks">🟢 Parks & Trails</div>
-    <div class="topic-button" id="other">🟣 Other</div>
+    <div class="topic-button" id="other">⚪ Other</div>
     
   </div>
   <script>
@@ -141,47 +141,133 @@
           {
             value: "Housing",
             symbol: {
-              type: "simple-marker",
-              size: 10,
-              color: [255, 255, 31], //yellow
-              outline: null
+              //type: "simple-marker",
+              //size: 10,
+              //color: [255, 255, 31], //yellow
+              //outline: null
+              type: "picture-marker",
+              url: "data:image/svg+xml," + encodeURIComponent(`
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <radialGradient id="sphere" cx="30%" cy="30%">
+                      <stop offset="0%" stop-color="#ffff66" />
+                      <stop offset="50%" stop-color="#ffd700" />
+                      <stop offset="100%" stop-color="#cc9900" />
+                    </radialGradient>
+                  </defs>
+                  <circle cx="12" cy="12" r="10" fill="url(#sphere)" />
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="#997700" stroke-width="0.5" />
+                </svg>
+              `),
+              width: 14,
+              height: 14
             }
           },
            {
             value: "Employment",
             symbol: {
-              type: "simple-marker",
-              size: 10,
-              color: [193, 66, 104], //red
-              outline: null
+             // type: "simple-marker",
+             // size: 10,
+             // color: [69, 151, 205], //blue
+             // outline: null
+              type: "picture-marker",
+              url: "data:image/svg+xml," + encodeURIComponent(`
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <radialGradient id="sphere" cx="30%" cy="30%">
+                      <stop offset="0%" stop-color="#99ccff" />
+                      <stop offset="50%" stop-color="#0099ff" />
+                      <stop offset="100%" stop-color="#0066cc" />
+                    </radialGradient>
+                  </defs>
+                  <circle cx="12" cy="12" r="10" fill="url(#sphere)" />
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="#997700" stroke-width="0.5" />
+                </svg>
+              `),
+              width: 14,
+              height: 14
             }
           },
           
           {
             value: "Transportation",
             symbol: {
-              type: "simple-marker",
-              size: 10,
-              color: [69, 151, 205], //blue
-              outline: null
+             // type: "simple-marker",
+             // size: 10,
+             // color: [193, 66, 104], //red
+             // outline: null
+            type: "picture-marker",
+              url: "data:image/svg+xml," + encodeURIComponent(`
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <radialGradient id="sphere" cx="30%" cy="30%">
+                      <stop offset="0%" stop-color="#ff6666" />
+                      <stop offset="50%" stop-color="#ff0000" />
+                      <stop offset="100%" stop-color="#990000" />
+                    </radialGradient>
+                  </defs>
+                  <circle cx="12" cy="12" r="10" fill="url(#sphere)" />
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="#997700" stroke-width="0.5" />
+                </svg>
+              `),
+              width: 14,
+              height: 14
             }
           },
           {
             value: "Parks",
             symbol: {
-              type: "simple-marker",
-              size: 10,
-              color: [69, 199, 86], // green
-              outline: null
+              //type: "simple-marker",
+              //size: 10,
+              //color: [69, 199, 86], // green
+              //outline: null
+             type: "picture-marker",
+              url: "data:image/svg+xml," + encodeURIComponent(`
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <radialGradient id="sphere" cx="30%" cy="30%">
+                      <stop offset="0%" stop-color="#7fcc7f" />
+                      <stop offset="50%" stop-color="#50C878" />
+                      <stop offset="100%" stop-color="#2a6f3f" />
+                    </radialGradient>
+                  </defs>
+                  <circle cx="12" cy="12" r="10" fill="url(#sphere)" />
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="#997700" stroke-width="0.5" />
+                </svg>
+              `),
+              width: 14,
+              height: 14
             }
           },
+
          {
             value: "Other",
             symbol: {
-              type: "simple-marker",
-              size: 10,
-              color: [141, 66, 185], // purple
-              outline: null
+              //type: "simple-marker",
+              //size: 10,
+              //color: [141, 66, 185], // purple
+              //outline: null
+             type: "picture-marker",
+              url: "data:image/svg+xml," + encodeURIComponent(`
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                     <radialGradient id="sphere" cx="30%" cy="30%">
+                      <stop offset="0%" stop-color="#ffffff" />
+                      <stop offset="50%" stop-color="#e6e6e6" />
+                      <stop offset="100%" stop-color="#978fa8" />
+                    </radialGradient>
+                    <radialGradient id="highlight">
+                      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+                      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                    </radialGradient>
+                  </defs>
+                  <circle cx="12" cy="12" r="10" fill="url(#sphere)" />
+                  <ellipse cx="8" cy="8" rx="3" ry="2.5" fill="url(#highlight)" />
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="#999999" stroke-width="0.5" />
+                </svg>
+              `),
+              width: 14,
+              height: 14
             }
           },
         ]
