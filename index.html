@@ -44,7 +44,7 @@
     .welcome-box {
       position: absolute;
       top: 70%;
-      left: 50%;
+      left: 30%; /* was 50% */
       transform: translate(50%,-50%);
       background-color: white;
       padding: 10px;
@@ -74,6 +74,11 @@
       bottom: 10px;
       right: 10px;
       cursor: pointer;
+    }
+
+    /* Hide the Zoom to button from Calcite action bar */
+    calcite-action-bar[slot="action-bar"] {
+      display: none !important;
     }
 
   </style>
@@ -122,6 +127,7 @@
           spatialReference: { wkid: 4326 }
         }
       });
+      
 
       var featureLayerUrl = "https://services3.arcgis.com/pZZTDhBBLO3B9dnl/arcgis/rest/services/Public_Comment/FeatureServer";
 
@@ -131,7 +137,7 @@
         editable: true, // Allow editing
       });
 
-      map.add(featureLayer);
+      //map.add(featureLayer); changed order of layers below
 
       // Define the UniqueValueRenderer
       var renderer = new UniqueValueRenderer({
@@ -187,8 +193,7 @@
               width: 14,
               height: 14
             }
-          },
-          
+          },          
           {
             value: "Transportation",
             symbol: {
@@ -239,7 +244,6 @@
               height: 14
             }
           },
-
          {
             value: "Other",
             symbol: {
@@ -395,7 +399,7 @@
       map.add(polygonLayerUGB);
       map.add(polygonLayerStudyArea); //top layer
      // map.add(featureLayer); //Studyarea with shadow
-
+      map.add(featureLayer); //public comment layer to show on top
 
       // Default for adding points- double click. 
       view.on("double-click", function(event) {
@@ -414,7 +418,7 @@
         }
 
         var attributes = {
-          pubcomment: prompt("Enter a short comment for this point:"),
+          public_comment: prompt("Enter a short comment for this point:"),
           topic: selectedTopic.id.charAt(0).toUpperCase() + selectedTopic.id.slice(1)
         };
 
@@ -443,14 +447,25 @@
         content: [
           {
             type: "text",
-            text: "<b>Comment:</b> {pubcomment}"
+            text: "<b>Comment:</b> {public_comment}"
           }
-        ]
+        ],
+        actions: [] // No actions -> no zoom to button
       };
 
       featureLayer.popupTemplate = popupTemplate;
     
-      view.popup.collapseEnabled = false;
+      //popup settings
+      //view.popup.collapseEnabled = false; //deprecated code
+      view.popup.visibleElements = {
+        collapseButton: false
+      };
+          
+      view.popup.dockEnabled = false;     // Disable docking
+      view.popup.dockOptions = {      
+        buttonEnabled: false              //do not show dock button
+      };
+      
       
       var toggle = new BasemapToggle({
         view: view,
