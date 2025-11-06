@@ -8,11 +8,11 @@
   <script src="https://js.arcgis.com/4.29/"></script>
   <style>
     #viewDiv {
-      height: 100vh;
+      height: 90vh; //for cell phone view
       width: 100%;
       margin: 0;
       padding: 0;
-      position: relative;
+     /* position: relative;*/
     }
 
     .topic-buttons {
@@ -44,7 +44,7 @@
     .welcome-box {
       position: absolute;
       top: 70%;
-      left: 30%; /* was 50% */
+      left: 50%; /* was 50% */
       transform: translate(50%,-50%);
       background-color: white;
       padding: 10px;
@@ -119,11 +119,11 @@
         basemap: "gray-vector" //dark-gray-vector, topo-vector, streets-vector, gray-vector, streets-night-vector (ugly), streets-relief-vector (similar to topo-vector)
       });
 
-      var view = new MapView({
+      const view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-123.299, 44.549],
-        zoom: 14
+        center: [-123.299, 44.549],  // Longitude, latitude, doesn't work well for cell phones
+        zoom: window.innerWidth <600 ? 12 : 13                     //starting zoom level for mobile vs desktop
         //extent: {
         //  xmin: -123.334,  //lower right corner?
         //  ymin: 44.53,
