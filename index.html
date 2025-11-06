@@ -8,7 +8,7 @@
   <script src="https://js.arcgis.com/4.29/"></script>
   <style>
     #viewDiv {
-      height: 80vh;
+      height: 100vh;
       width: 100%;
       margin: 0;
       padding: 0;
@@ -69,17 +69,20 @@
       font-size: 20px;
     }
 
+    /*no info button
     .info-button {
       position: absolute;
       bottom: 10px;
       right: 10px;
       cursor: pointer;
-    }
+    } */
 
     /* Hide the Zoom to button from Calcite action bar */
     calcite-action-bar[slot="action-bar"] {
       display: none !important;
     }
+
+
 
   </style>
 </head>
@@ -113,19 +116,21 @@
       "esri/widgets/Legend"
     ], function(Map, MapView, FeatureLayer, Graphic, SimpleMarkerSymbol, UniqueValueRenderer, SimpleFillSymbol, PopupTemplate, BasemapToggle, Basemap, Legend) {
       var map = new Map({
-        basemap: "topo-vector"
+        basemap: "gray-vector" //dark-gray-vector, topo-vector, streets-vector, gray-vector, streets-night-vector (ugly), streets-relief-vector (similar to topo-vector)
       });
 
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        extent: {
-          xmin: -123.35,  //lower right corner?
-          ymin: 44.53,
-          xmax: -123.28, //upper left corner?
-          ymax: 44.57,
-          spatialReference: { wkid: 4326 }
-        }
+        center: [-123.299, 44.549],
+        zoom: 14
+        //extent: {
+        //  xmin: -123.334,  //lower right corner?
+        //  ymin: 44.53,
+        //  xmax: -123.28, //upper left corner?
+        //  ymax: 44.57,
+        //  spatialReference: { wkid: 4326 }
+        //}
       });
       
 
@@ -135,7 +140,17 @@
         url: featureLayerUrl,
         outFields: ["*"],
         editable: true, // Allow editing
+        legendEnabled: false // Disable default legend
       });
+
+      // Add Legend
+      var legend = new Legend({
+        view: view,
+        container: document.createElement("div")
+      });
+      view.ui.add(legend, "bottom-right");
+
+
 
       //map.add(featureLayer); changed order of layers below
 
